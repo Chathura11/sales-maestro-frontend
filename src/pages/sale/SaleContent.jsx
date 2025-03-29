@@ -76,7 +76,7 @@ const SaleContent = () => {
             <Grid container spacing={2}>
             {categories&&categories.map((category,index)=>{
               return(
-                <Grid item key={index}>
+                <Grid key={index}>
                   <CardActionArea onClick={() => handleCardClick(category)}>
                   <Card variant='outlined' sx={{width:150}} >
                     <CardHeader sx={{height:2,textAlign:'center'}}

@@ -52,7 +52,7 @@ const SaleProducts = ({products,setOrderedProducts,setTotalPrice,setTotalQnty}) 
             <Grid container spacing={2}>
             {products&&products.map((product,index)=>{
               return(
-                <Grid item key={index}>
+                <Grid key={index}>
                   <CardActionArea onClick={() => handleCardClick(product)}>
                   <Card variant='outlined' sx={{width:150}} >
                     <CardContent sx={{height:20}} >
