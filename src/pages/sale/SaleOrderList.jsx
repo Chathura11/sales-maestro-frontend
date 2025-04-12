@@ -1,6 +1,6 @@
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, IconButton, Typography, Paper, Button } from '@mui/material'
 import React from 'react'
-import { Backspace as BackspaceIcon } from "@mui/icons-material";
+import { Backspace as BackspaceIcon, WidthFull } from "@mui/icons-material";
 import { blueGrey } from '@mui/material/colors';
 
 const SaleOrderList = ({orderedProducts,setOrderedProducts,setTotalPrice,setTotalQnty,totalPrice,totalQnty}) => {
@@ -28,6 +28,12 @@ const SaleOrderList = ({orderedProducts,setOrderedProducts,setTotalPrice,setTota
     });
   }
 
+  function ClearList(){
+    setOrderedProducts([]);
+    setTotalPrice(0)
+    setTotalQnty(0)
+  }
+
   const paperStyle={
     padding:'20px',
     background:"#FFFFFF77"
@@ -47,7 +53,7 @@ const SaleOrderList = ({orderedProducts,setOrderedProducts,setTotalPrice,setTota
               <TableCell sx={{ color: 'white', textAlign: 'center' }}>%</TableCell>
               <TableCell sx={{ color: 'white', textAlign: 'center' }}>Price</TableCell>
               <TableCell sx={{ color: 'white', textAlign: 'center' }}>Total</TableCell>
-              <TableCell></TableCell>
+              <TableCell align='right'><Button style={{width:'100%',background:'red'}} variant='contained' onClick={ClearList}>Clear</Button></TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -57,7 +63,7 @@ const SaleOrderList = ({orderedProducts,setOrderedProducts,setTotalPrice,setTota
               <TableCell></TableCell>
               <TableCell></TableCell>
               <TableCell sx={{ color: 'white', textAlign: 'center' }}>{totalPrice.toFixed(2)}</TableCell>
-              <TableCell align='right'><Button variant='contained'>Sell</Button></TableCell>
+              <TableCell align='right'><Button style={{width:'100%'}} variant='contained'>Sell</Button></TableCell>
             </TableRow>
             {orderedProducts && orderedProducts.map((product, index) => (
               <TableRow key={index}>
