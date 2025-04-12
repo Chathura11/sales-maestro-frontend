@@ -108,10 +108,10 @@ const SaleContent = () => {
       {
         !isLoading&&
         <Stack direction='row' spacing={2} justifyContent='start'>
-          <Box width="54%">
+          <Box width="40%">
             <SaleProducts products={filteredProducts} setOrderedProducts={setOrderedProducts} setTotalPrice={setTotalPrice} setTotalQnty={setTotalQnty}/>
           </Box>
-          <Box width="46%">
+          <Box width="60%">
             <SaleOrderList orderedProducts={orderedProducts} setOrderedProducts={setOrderedProducts} setTotalPrice={setTotalPrice} setTotalQnty={setTotalQnty} totalPrice={totalPrice} totalQnty={totalQnty}/>
           </Box>
         </Stack>
