@@ -1,4 +1,4 @@
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, IconButton, Typography } from '@mui/material'
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, IconButton, Typography, Paper, Button } from '@mui/material'
 import React from 'react'
 import { Backspace as BackspaceIcon } from "@mui/icons-material";
 import { blueGrey } from '@mui/material/colors';
@@ -28,48 +28,55 @@ const SaleOrderList = ({orderedProducts,setOrderedProducts,setTotalPrice,setTota
     });
   }
 
+  const paperStyle={
+    padding:'20px',
+    background:"#FFFFFF77"
+  }
+
   return (
-    <TableContainer>
-      <Typography variant="h6" align="center" sx={{ background: 'teal', color: 'white', padding: 1 }}>
-        Ordered List
-      </Typography>
-      <Table>
-        <TableHead sx={{ background: blueGrey[900] }}>
-          <TableRow>
-            <TableCell sx={{ color: 'white' }}>Product</TableCell>
-            <TableCell sx={{ color: 'white', textAlign: 'center' }}>Qnty</TableCell>
-            <TableCell sx={{ color: 'white', textAlign: 'center' }}>%</TableCell>
-            <TableCell sx={{ color: 'white', textAlign: 'center' }}>Price</TableCell>
-            <TableCell sx={{ color: 'white', textAlign: 'center' }}>Total</TableCell>
-            <TableCell></TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {orderedProducts && orderedProducts.map((product, index) => (
-            <TableRow key={index}>
-              <TableCell>{product.name}</TableCell>
-              <TableCell align="center">{product.quantity}</TableCell>
-              <TableCell align="center">{product.discount}</TableCell>
-              <TableCell align="center">{product.price}</TableCell>
-              <TableCell align="center">{product.quantityPrice}</TableCell>
-              <TableCell>
-                <IconButton onClick={() => backspaceHandle(product)}>
-                  <BackspaceIcon />
-                </IconButton>
-              </TableCell>
+    <Paper elevation={0} style={paperStyle} sx={{padding:2,height:'100%'}}>
+      <TableContainer>
+        <Typography variant="h6" align="center" sx={{ background: 'teal', color: 'white', padding: 1 }}>
+          Ordered List
+        </Typography>
+        <Table>
+          <TableHead sx={{ background: blueGrey[900] }}>
+            <TableRow>
+              <TableCell sx={{ color: 'white' }}>Product</TableCell>
+              <TableCell sx={{ color: 'white', textAlign: 'center' }}>Qnty</TableCell>
+              <TableCell sx={{ color: 'white', textAlign: 'center' }}>%</TableCell>
+              <TableCell sx={{ color: 'white', textAlign: 'center' }}>Price</TableCell>
+              <TableCell sx={{ color: 'white', textAlign: 'center' }}>Total</TableCell>
+              <TableCell></TableCell>
             </TableRow>
-          ))}
-          <TableRow sx={{ background: blueGrey[900] }}>
-            <TableCell sx={{ color: 'white' }}>Total</TableCell>
-            <TableCell sx={{ color: 'white', textAlign: 'center' }}>{totalQnty}</TableCell>
-            <TableCell></TableCell>
-            <TableCell></TableCell>
-            <TableCell sx={{ color: 'white', textAlign: 'center' }}>{totalPrice}</TableCell>
-            <TableCell></TableCell>
-          </TableRow>
-        </TableBody>
-      </Table>
-    </TableContainer>
+          </TableHead>
+          <TableBody>
+            <TableRow sx={{ background: blueGrey[500] }}>
+              <TableCell sx={{ color: 'white' }}>Total</TableCell>
+              <TableCell sx={{ color: 'white', textAlign: 'center' }}>{totalQnty}</TableCell>
+              <TableCell></TableCell>
+              <TableCell></TableCell>
+              <TableCell sx={{ color: 'white', textAlign: 'center' }}>{totalPrice.toFixed(2)}</TableCell>
+              <TableCell align='right'><Button variant='contained'>Sell</Button></TableCell>
+            </TableRow>
+            {orderedProducts && orderedProducts.map((product, index) => (
+              <TableRow key={index}>
+                <TableCell>{product.name}</TableCell>
+                <TableCell align="center">{product.quantity}</TableCell>
+                <TableCell align="center">{product.discount}</TableCell>
+                <TableCell align="center">{product.price}</TableCell>
+                <TableCell align="center">{product.quantityPrice.toFixed(2)}</TableCell>
+                <TableCell align='right'>
+                  <IconButton onClick={() => backspaceHandle(product)}>
+                    <BackspaceIcon />
+                  </IconButton>
+                </TableCell>
+              </TableRow>
+            ))}          
+          </TableBody>
+        </Table>
+      </TableContainer>
+    </Paper>
   );
 }
 
